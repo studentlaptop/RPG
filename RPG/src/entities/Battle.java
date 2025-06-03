@@ -68,23 +68,23 @@ public class Battle {
 			queueCombatants();
 			String combatantName = combatants.peek().getName();
 			int combatantHp = combatants.peek().getHp();
-			
+
 			for (int i = 0; combatants.isEmpty() != true; i++) {
 				if (player.getHp() > 0 && enemy.getHp() > 0) {
-					System.out.print(combatants.peek().getName() + " attacks! ");
+					System.out.print(combatants.peek().getName() + " attacks!");
 					attack();
 					System.out.println("\n" + combatantName + "'s HP: " + combatantHp);
 					combatants.remove();
 				}
 			}
+
 			System.out.println("\n" + player.getName() + "'s HP: " + player.getHp());
-			System.out.println(enemy.getName() + "'s HP: " + enemy.getHp());
+			System.out.println(enemy.getName() + "'s HP: " + enemy.getHp() + "\n");
 		}
+
 		System.out.println(victor() + " wins!");
 		return victor();
 	} // end of battleSequence()
-
-	
 
 	public int attack() {
 		int playerAttack = player.getAttack();
@@ -92,7 +92,7 @@ public class Battle {
 		int playerHealth = player.getHp();
 		int enemyHealth = enemy.getHp();
 
-		if (playerFirst) {
+		if (combatants.peek() == player) {
 			enemy.setHp(enemyHealth - playerAttack); // player attacks; enemy loses hp
 			return enemyHealth;
 		} else {
