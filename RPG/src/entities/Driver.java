@@ -1,6 +1,4 @@
 package entities;
-import java.util.LinkedList;
-import java.util.Queue;
 
 /**
  * Driver.java Testing environment for RPG Project, a simple turn-based
