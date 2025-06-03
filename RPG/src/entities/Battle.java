@@ -102,7 +102,6 @@ public class Battle {
 	} // end of attack()
 
 	public void queueCombatants() {
-		goesFirst();
 		if (goesFirst()) {
 			combatants.add(player);
 			combatants.add(enemy);
