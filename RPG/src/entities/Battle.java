@@ -9,7 +9,7 @@ public class Battle {
 	protected Player player;
 	protected Enemy enemy;
 	// protected boolean battleStart;
-	Queue<entities.Entity> combatants = new LinkedList<>();
+	protected Queue<entities.Entity> combatants = new LinkedList<>();
 	protected boolean playerFirst;
 
 	public Battle(Player player, Enemy enemy) {
