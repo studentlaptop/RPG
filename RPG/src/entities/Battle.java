@@ -66,8 +66,8 @@ public class Battle {
 
 		while (player.getHp() > 0 && enemy.getHp() > 0) {
 			queueCombatants();
-
-			for (int i = 0; combatants.isEmpty() != true; i++) {
+			
+			while (!combatants.isEmpty()) {
 				if (player.getHp() > 0 && enemy.getHp() > 0) {
 					String combatantName = combatants.peek().getName();
 					int combatantHp = combatants.peek().getHp();
