@@ -23,13 +23,13 @@ public class Battle {
 		int enemySpeed = enemy.getSpeed();
 
 		if (playerSpeed > enemySpeed) {
-			return playerFirst = true; // player goes first
+			return playerFirst = true;
 		}
 
 		if (playerSpeed == enemySpeed) {
 			roll = diceRoll(1, 10);
 			if (roll > 5) {
-				return playerFirst = true; // player goes first
+				return playerFirst = true;
 			}
 		}
 		return playerFirst = false; // enemy goes first
@@ -59,35 +59,26 @@ public class Battle {
 
 	public String battleSequence() {
 		// beginBattle();
-		System.out.println("Player: " + player.getName());
-		System.out.println("Speed: " + player.getSpeed());
-		System.out.println("Enemy: " + enemy.getName());
-		System.out.println("Speed: " + enemy.getSpeed() + "\n");
-
 		while (player.getHp() > 0 && enemy.getHp() > 0) {
 			queueCombatants();
 			
 			while (!combatants.isEmpty()) {
 				if (player.getHp() > 0 && enemy.getHp() > 0) {
-					String combatantName = combatants.peek().getName();
-					int combatantHp = combatants.peek().getHp();
-					System.out.print(combatantName + " attacks!");
 					attack();
 					combatants.remove();
-					System.out.println("\n" + combatantName + "'s HP: " + combatantHp);
 				} else {
-					System.out.println("\n" + player.getName() + "'s HP: " + player.getHp());
-					System.out.println(enemy.getName() + "'s HP: " + enemy.getHp());
-					System.out.println(victor() + " wins!");
 					return victor();
 				}
 			}
-			System.out.println("\n" + player.getName() + "'s HP: " + player.getHp());
-			System.out.println(enemy.getName() + "'s HP: " + enemy.getHp());
 		}
 		return null;
 	} // end of battleSequence()
-
+	
+	public String stats(Player player, Enemy enemy) {
+		String stats = (player.getName() + "'s HP: " + player.getHp() + "\n" + enemy.getName() + "'s HP: " + enemy.getHp());
+		return stats;
+	}
+	
 	public int attack() {
 		int playerAttack = player.getAttack();
 		int enemyAttack = enemy.getAttack();
