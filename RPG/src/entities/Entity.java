@@ -4,16 +4,16 @@ package entities;
  * Constructor and methods for Player.java and Enemy.java
  */
 public abstract class Entity {
-	protected String name;
-	protected int speed;
-	protected int attack;
-	protected int hp;
+	private String name;
+	private int speed;
+	private int attack;
+	private int hp;
 	
-	public Entity(String name, int speed, int attack, int hp) {
-		this.name = name;
-		this.speed = speed;
-		this.attack = attack;
-		this.hp = hp;
+	public Entity(EntityParams params) {
+		this.name = params.getName();
+		this.speed = params.getSpeed();
+		this.attack = params.getAttack();
+		this.hp = params.getHp();
 	}
 
 	public String getName() {

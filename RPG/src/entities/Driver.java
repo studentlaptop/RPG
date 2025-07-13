@@ -9,6 +9,20 @@ package entities;
 public class Driver {
 	// TODO Add support for teams of players and enemies
 	public static void main(String[] args) {
-		
+		Player player = new Player(new EntityParams()
+				.name("Wojak")
+				.speed(5)
+				.attack(1)
+				.hp(10)
+				);
+		Enemy enemy = new Enemy(new EntityParams()
+				.name("Gigachad")
+				.speed(5)
+				.attack(1)
+				.hp(10)
+				);
+		Battle test = new Battle(player, enemy);
+		test.battleSequence();
+		System.out.println(test.victor() + " won!");
 	}
 }

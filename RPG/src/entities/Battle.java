@@ -6,11 +6,11 @@ import java.util.Queue;
 import java.util.LinkedList;
 
 public class Battle {
-	protected Player player;
-	protected Enemy enemy;
+	private Player player;
+	private Enemy enemy;
 	// protected boolean battleStart;
-	protected Queue<entities.Entity> combatants = new LinkedList<>();
-	protected boolean playerFirst;
+	private Queue<entities.Entity> combatants = new LinkedList<>();
+	private boolean playerFirst;
 
 	public Battle(Player player, Enemy enemy) {
 		this.player = player;
@@ -64,7 +64,9 @@ public class Battle {
 			
 			while (!combatants.isEmpty()) {
 				if (player.getHp() > 0 && enemy.getHp() > 0) {
+					//System.out.println(combatants.peek().getName() + " attacks!\n");
 					attack();
+					//System.out.println(getStats(player, enemy) + "\n");
 					combatants.remove();
 				} else {
 					return victor();
@@ -74,7 +76,7 @@ public class Battle {
 		return null;
 	} // end of battleSequence()
 	
-	public String stats(Player player, Enemy enemy) {
+	public String getStats(Player player, Enemy enemy) {
 		String stats = (player.getName() + "'s HP: " + player.getHp() + "\n" + enemy.getName() + "'s HP: " + enemy.getHp());
 		return stats;
 	}

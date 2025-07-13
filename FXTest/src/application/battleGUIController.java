@@ -2,6 +2,7 @@ package application;
 
 import entities.Player;
 import entities.Enemy;
+import entities.EntityParams;
 
 import java.io.File;
 import java.net.URL;
@@ -16,8 +17,18 @@ import javafx.scene.image.ImageView;
 
 public class battleGUIController implements Initializable{
 	
-	Player protagonist = new Player("Wojak", 5, 1, 10);
-	Enemy enemy = new Enemy("Gigachad", 5, 1, 10);
+	Player player = new Player(new EntityParams()
+			.name("Wojak")
+			.speed(5)
+			.attack(1)
+			.hp(10)
+			);
+	Enemy enemy = new Enemy(new EntityParams()
+			.name("Gigachad")
+			.speed(5)
+			.attack(1)
+			.hp(10)
+			);
 
     @FXML
     private TextArea battleText;
