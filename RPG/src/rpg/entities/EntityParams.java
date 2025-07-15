@@ -1,4 +1,4 @@
-package entities;
+package rpg.entities;
 
 public class EntityParams {
 	private String name;

@@ -1,4 +1,4 @@
-package entities;
+package rpg.entities;
 /**
  * Entity.java
  * Constructor and methods for Player.java and Enemy.java

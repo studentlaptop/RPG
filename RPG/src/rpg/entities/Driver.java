@@ -1,4 +1,4 @@
-package entities;
+package rpg.entities;
 
 /**
  * Driver.java Testing environment for RPG Project, a simple turn-based
@@ -22,7 +22,11 @@ public class Driver {
 				.hp(10)
 				);
 		Battle test = new Battle(player, enemy);
+		//test.setBackTurned(false);
 		test.battleSequence();
+		//test.queueCombatants();
+		//test.printCombatantQueue();
+
 		System.out.println(test.victor() + " won!");
 	}
 }

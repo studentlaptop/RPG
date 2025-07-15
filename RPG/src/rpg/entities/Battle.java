@@ -1,4 +1,4 @@
-package entities;
+package rpg.entities;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -8,9 +8,10 @@ import java.util.LinkedList;
 public class Battle {
 	private Player player;
 	private Enemy enemy;
+	private boolean backTurned = false;
 	// protected boolean battleStart;
-	private Queue<entities.Entity> combatants = new LinkedList<>();
-	private boolean playerFirst;
+	private Queue<rpg.entities.Entity> combatantQueue = new LinkedList<>();
+	
 
 	public Battle(Player player, Enemy enemy) {
 		this.player = player;
@@ -23,16 +24,16 @@ public class Battle {
 		int enemySpeed = enemy.getSpeed();
 
 		if (playerSpeed > enemySpeed) {
-			return playerFirst = true;
+			return true;
 		}
 
 		if (playerSpeed == enemySpeed) {
 			roll = diceRoll(1, 10);
 			if (roll > 5) {
-				return playerFirst = true;
+				return true;
 			}
 		}
-		return playerFirst = false; // enemy goes first
+		return false; // enemy goes first
 	} // end of goesFirst()
 
 	public int diceRoll(int min, int max) {
@@ -62,12 +63,12 @@ public class Battle {
 		while (player.getHp() > 0 && enemy.getHp() > 0) {
 			queueCombatants();
 			
-			while (!combatants.isEmpty()) {
+			while (!combatantQueue.isEmpty()) {
 				if (player.getHp() > 0 && enemy.getHp() > 0) {
-					//System.out.println(combatants.peek().getName() + " attacks!\n");
+					System.out.println(combatantQueue.peek().getName() + " attacks!\n");
 					attack();
-					//System.out.println(getStats(player, enemy) + "\n");
-					combatants.remove();
+					System.out.println(getStats(player, enemy) + "\n");
+					combatantQueue.remove();
 				} else {
 					return victor();
 				}
@@ -76,7 +77,7 @@ public class Battle {
 		return null;
 	} // end of battleSequence()
 	
-	public String getStats(Player player, Enemy enemy) {
+	public String getStats(Player player, Enemy enemy) { // consider returning an array or other kind of list for GUI to call and retrieve from
 		String stats = (player.getName() + "'s HP: " + player.getHp() + "\n" + enemy.getName() + "'s HP: " + enemy.getHp());
 		return stats;
 	}
@@ -87,7 +88,7 @@ public class Battle {
 		int playerHealth = player.getHp();
 		int enemyHealth = enemy.getHp();
 
-		if (combatants.peek() instanceof Player) {
+		if (combatantQueue.peek() instanceof Player) {
 			enemy.setHp(enemyHealth - playerAttack); // player attacks; enemy loses hp
 			return enemyHealth;
 		} else {
@@ -97,13 +98,39 @@ public class Battle {
 	} // end of attack()
 
 	public void queueCombatants() {
-		goesFirst();
+		boolean playerFirst = goesFirst();
+		
+		if (backTurned) {
+			combatantQueue.add(enemy);
+			combatantQueue.add(player);
+			backTurned = false;
+			return;
+		}
+		
 		if (playerFirst) {
-			combatants.add(player);
-			combatants.add(enemy);
+			combatantQueue.add(player);
+			combatantQueue.add(enemy);
 		} else {
-			combatants.add(enemy);
-			combatants.add(player);
+			combatantQueue.add(enemy);
+			combatantQueue.add(player);
 		}
 	} // end of queueCombatants()
+	
+	public Queue<rpg.entities.Entity> getCombatantQueue() {
+		return combatantQueue;
+	}
+	
+	public boolean getBackTurned() {
+		return backTurned;
+	}
+	
+	public void setBackTurned(boolean backTurned) {
+		this.backTurned = backTurned;
+	}
+	
+	public void printCombatantQueue() {
+		for (Entity combatant : combatantQueue) {
+			System.out.println(combatant.getName());
+		}
+	}
 }
