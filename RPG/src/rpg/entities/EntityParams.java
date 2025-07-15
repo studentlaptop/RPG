@@ -1,10 +1,15 @@
 package rpg.entities;
 
+import rpg.swing.GamePanel;
+import rpg.swing.KeyHandler;
+
 public class EntityParams {
 	private String name;
 	private int speed;
 	private int attack;
 	private int hp;
+	private GamePanel gamePanel;
+	private KeyHandler playerMovementDirection;
 	
 	public EntityParams name(String name) {
 		this.name = name;
@@ -26,6 +31,17 @@ public class EntityParams {
 		return this;
 	}
 	
+	public EntityParams gamePanel(GamePanel gamePanel) {
+		this.gamePanel = gamePanel;
+		return this;
+	}
+	
+	public EntityParams playerMovementDirection(KeyHandler playerMovementDirection) {
+		this.playerMovementDirection = playerMovementDirection;
+		return this;
+	}
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -40,5 +56,13 @@ public class EntityParams {
 	
 	public int getHp() {
 		return hp;
+	}
+	
+	public GamePanel getGamePanel() {
+		return gamePanel;
+	}
+	
+	public KeyHandler getPlayerMovementDirection() {
+		return playerMovementDirection;
 	}
 }

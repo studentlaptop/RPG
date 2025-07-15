@@ -8,6 +8,8 @@ public abstract class Entity {
 	private int speed;
 	private int attack;
 	private int hp;
+	private int xPos, yPos;
+	private int movementSpeed;
 	
 	public Entity(EntityParams params) {
 		this.name = params.getName();
@@ -42,5 +44,29 @@ public abstract class Entity {
 
 	public void setHp(int hp) {
 		this.hp = hp;
+	}
+
+	public int getXPos() {
+		return xPos;
+	}
+
+	public void setXPos(int xPos) {
+		this.xPos = xPos;
+	}
+
+	public int getYPos() {
+		return yPos;
+	}
+
+	public void setYPos(int yPos) {
+		this.yPos = yPos;
+	}
+
+	public int getMovementSpeed() {
+		return movementSpeed;
+	}
+
+	public void setMovementSpeed(int entityMovementSpeed) {
+		this.movementSpeed = entityMovementSpeed;
 	}
 }
