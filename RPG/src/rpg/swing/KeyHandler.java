@@ -51,4 +51,20 @@ public class KeyHandler implements KeyListener {
 		default:
 		}
 	}
+
+	public boolean getUpPressed() {
+		return upPressed;
+	}
+
+	public boolean getDownPressed() {
+		return downPressed;
+	}
+
+	public boolean getLeftPressed() {
+		return leftPressed;
+	}
+
+	public boolean getRightPressed() {
+		return rightPressed;
+	}
 }

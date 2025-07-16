@@ -11,7 +11,6 @@ public class Battle {
 	private boolean backTurned = false;
 	// protected boolean battleStart;
 	private Queue<rpg.entities.Entity> combatantQueue = new LinkedList<>();
-	
 
 	public Battle(Player player, Enemy enemy) {
 		this.player = player;
@@ -62,7 +61,7 @@ public class Battle {
 		// beginBattle();
 		while (player.getHp() > 0 && enemy.getHp() > 0) {
 			queueCombatants();
-			
+
 			while (!combatantQueue.isEmpty()) {
 				if (player.getHp() > 0 && enemy.getHp() > 0) {
 					System.out.println(combatantQueue.peek().getName() + " attacks!\n");
@@ -76,12 +75,14 @@ public class Battle {
 		}
 		return null;
 	} // end of battleSequence()
-	
-	public String getStats(Player player, Enemy enemy) { // consider returning an array or other kind of list for GUI to call and retrieve from
-		String stats = (player.getName() + "'s HP: " + player.getHp() + "\n" + enemy.getName() + "'s HP: " + enemy.getHp());
+
+	public String getStats(Player player, Enemy enemy) { // consider returning an array or other kind of list for GUI to
+															// call and retrieve from
+		String stats = (player.getName() + "'s HP: " + player.getHp() + "\n" + enemy.getName() + "'s HP: "
+				+ enemy.getHp());
 		return stats;
 	}
-	
+
 	public int attack() {
 		int playerAttack = player.getAttack();
 		int enemyAttack = enemy.getAttack();
@@ -99,14 +100,14 @@ public class Battle {
 
 	public void queueCombatants() {
 		boolean playerFirst = goesFirst();
-		
+
 		if (backTurned) {
 			combatantQueue.add(enemy);
 			combatantQueue.add(player);
 			backTurned = false;
 			return;
 		}
-		
+
 		if (playerFirst) {
 			combatantQueue.add(player);
 			combatantQueue.add(enemy);
@@ -115,19 +116,19 @@ public class Battle {
 			combatantQueue.add(player);
 		}
 	} // end of queueCombatants()
-	
+
 	public Queue<rpg.entities.Entity> getCombatantQueue() {
 		return combatantQueue;
 	}
-	
+
 	public boolean getBackTurned() {
 		return backTurned;
 	}
-	
+
 	public void setBackTurned(boolean backTurned) {
 		this.backTurned = backTurned;
 	}
-	
+
 	public void printCombatantQueue() {
 		for (Entity combatant : combatantQueue) {
 			System.out.println(combatant.getName());

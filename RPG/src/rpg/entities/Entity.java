@@ -1,7 +1,9 @@
 package rpg.entities;
+
+import java.awt.image.BufferedImage;
+
 /**
- * Entity.java
- * Constructor and methods for Player.java and Enemy.java
+ * Entity.java Constructor and methods for Player.java and Enemy.java
  */
 public abstract class Entity {
 	private String name;
@@ -10,13 +12,18 @@ public abstract class Entity {
 	private int hp;
 	private int xPos, yPos;
 	private int movementSpeed;
-	
+	protected BufferedImage upIdle, upMove, downIdle, downMove, leftIdle, leftMove, rightIdle, rightMove;
+	protected String direction;
+	protected int spriteCounter = 0;
+	protected int spriteNum = 1;
+
 	public Entity(EntityParams params) {
 		this.name = params.getName();
 		this.speed = params.getSpeed();
 		this.attack = params.getAttack();
 		this.hp = params.getHp();
 	}
+	
 
 	public String getName() {
 		return name;

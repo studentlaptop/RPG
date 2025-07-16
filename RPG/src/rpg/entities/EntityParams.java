@@ -9,7 +9,7 @@ public class EntityParams {
 	private int attack;
 	private int hp;
 	private GamePanel gamePanel;
-	private KeyHandler playerMovementDirection;
+	private KeyHandler playerMovementHandler;
 	
 	public EntityParams name(String name) {
 		this.name = name;
@@ -36,8 +36,8 @@ public class EntityParams {
 		return this;
 	}
 	
-	public EntityParams playerMovementDirection(KeyHandler playerMovementDirection) {
-		this.playerMovementDirection = playerMovementDirection;
+	public EntityParams playerMovementHandler(KeyHandler playerMovementHandler) {
+		this.playerMovementHandler = playerMovementHandler;
 		return this;
 	}
 	
@@ -62,7 +62,7 @@ public class EntityParams {
 		return gamePanel;
 	}
 	
-	public KeyHandler getPlayerMovementDirection() {
-		return playerMovementDirection;
+	public KeyHandler getPlayerMovementHandler() {
+		return playerMovementHandler;
 	}
 }
