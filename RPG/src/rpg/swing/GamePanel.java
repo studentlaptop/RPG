@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import rpg.backgroundtiles.BgTileManager;
 import rpg.entities.EntityParams;
 import rpg.entities.Player;
 
@@ -14,11 +15,12 @@ public class GamePanel extends JPanel implements Runnable {
 	final int originalTileSize = 16;
 	final int scale = 3;
 	public final int tileSize = originalTileSize * scale;
-	final int maxScreenCol = 16;
-	final int maxScreenRow = 12;
-	final int screenWidth = tileSize * maxScreenCol;
-	final int screenHeight = tileSize * maxScreenRow;
-
+	public final int maxScreenCol = 16;
+	public final int maxScreenRow = 12;
+	public final int screenWidth = tileSize * maxScreenCol;
+	public final int screenHeight = tileSize * maxScreenRow;
+	
+	BgTileManager bgTileManager = new BgTileManager(this);
 	KeyHandler playerMovementHandler = new KeyHandler();
 	Thread gameThread;
 	Player player = new Player(new EntityParams().name("Wojak").speed(5).attack(1).hp(10).gamePanel(this)
@@ -78,7 +80,7 @@ public class GamePanel extends JPanel implements Runnable {
 		super.paintComponent(g);
 
 		Graphics2D g2 = (Graphics2D) g;
-
+		bgTileManager.draw(g2);
 		player.draw(g2);
 		g2.dispose();
 	}
