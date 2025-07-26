@@ -6,11 +6,11 @@ import java.util.Queue;
 import java.util.LinkedList;
 
 public class Battle {
-	private Player player;
-	private Enemy enemy;
-	private boolean backTurned = false;
+	protected Player player;
+	protected Enemy enemy;
+	protected boolean backTurned = false;
 	// protected boolean battleStart;
-	private Queue<rpg.entities.Entity> combatantQueue = new LinkedList<>();
+	protected Queue<rpg.entities.Entity> combatantQueue = new LinkedList<>();
 
 	public Battle(Player player, Enemy enemy) {
 		this.player = player;
@@ -19,8 +19,8 @@ public class Battle {
 
 	public boolean goesFirst() {
 		int roll;
-		int playerSpeed = player.getSpeed();
-		int enemySpeed = enemy.getSpeed();
+		int playerSpeed = player.speed;
+		int enemySpeed = enemy.speed;
 
 		if (playerSpeed > enemySpeed) {
 			return true;
@@ -59,12 +59,12 @@ public class Battle {
 
 	public String battleSequence() {
 		// beginBattle();
-		while (player.getHp() > 0 && enemy.getHp() > 0) {
+		while (player.hp > 0 && enemy.hp > 0) {
 			queueCombatants();
 
 			while (!combatantQueue.isEmpty()) {
-				if (player.getHp() > 0 && enemy.getHp() > 0) {
-					System.out.println(combatantQueue.peek().getName() + " attacks!\n");
+				if (player.hp > 0 && enemy.hp > 0) {
+					System.out.println(combatantQueue.peek().name + " attacks!\n");
 					attack();
 					System.out.println(getStats(player, enemy) + "\n");
 					combatantQueue.remove();
@@ -78,16 +78,16 @@ public class Battle {
 
 	public String getStats(Player player, Enemy enemy) { // consider returning an array or other kind of list for GUI to
 															// call and retrieve from
-		String stats = (player.getName() + "'s HP: " + player.getHp() + "\n" + enemy.getName() + "'s HP: "
-				+ enemy.getHp());
+		String stats = (player.name + "'s HP: " + player.hp + "\n" + enemy.name + "'s HP: "
+				+ enemy.hp);
 		return stats;
 	}
 
 	public int attack() {
-		int playerAttack = player.getAttack();
-		int enemyAttack = enemy.getAttack();
-		int playerHealth = player.getHp();
-		int enemyHealth = enemy.getHp();
+		int playerAttack = player.attack;
+		int enemyAttack = enemy.attack;
+		int playerHealth = player.hp;
+		int enemyHealth = enemy.hp;
 
 		if (combatantQueue.peek() instanceof Player) {
 			enemy.setHp(enemyHealth - playerAttack); // player attacks; enemy loses hp
@@ -131,7 +131,7 @@ public class Battle {
 
 	public void printCombatantQueue() {
 		for (Entity combatant : combatantQueue) {
-			System.out.println(combatant.getName());
+			System.out.println(combatant.name);
 		}
 	}
 }

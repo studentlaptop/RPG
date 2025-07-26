@@ -10,23 +10,23 @@ import javax.swing.JPanel;
 import rpg.backgroundtiles.BgTileManager;
 import rpg.entities.EntityParams;
 import rpg.entities.Player;
+import rpg.entities.PlayerParams;
 
 public class GamePanel extends JPanel implements Runnable {
-	final int originalTileSize = 16;
-	final int scale = 3;
+	public final int originalTileSize = 16;
+	public final int scale = 3;
 	public final int tileSize = originalTileSize * scale;
 	public final int maxScreenCol = 16;
 	public final int maxScreenRow = 12;
 	public final int screenWidth = tileSize * maxScreenCol;
 	public final int screenHeight = tileSize * maxScreenRow;
+	public static final int FPS = 60;
 	
 	BgTileManager bgTileManager = new BgTileManager(this);
 	KeyHandler playerMovementHandler = new KeyHandler();
 	Thread gameThread;
-	Player player = new Player(new EntityParams().name("Wojak").speed(5).attack(1).hp(10).gamePanel(this)
+	Player player = new Player(new PlayerParams().name("Wojak").speed(5).attack(1).hp(10).gamePanel(this)
 			.playerMovementHandler(playerMovementHandler));
-
-	public static final int FPS = 60;
 
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));

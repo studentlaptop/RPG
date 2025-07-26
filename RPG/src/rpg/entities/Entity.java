@@ -6,12 +6,12 @@ import java.awt.image.BufferedImage;
  * Entity.java Constructor and methods for Player.java and Enemy.java
  */
 public abstract class Entity {
-	private String name;
-	private int speed;
-	private int attack;
-	private int hp;
-	private int xPos, yPos;
-	private int movementSpeed;
+	protected String name;
+	protected int speed;
+	protected int attack;
+	protected int hp;
+	protected int xPos, yPos;
+	protected int movementSpeed;
 	protected BufferedImage upIdle, upMove, downIdle, downMove, leftIdle, leftMove, rightIdle, rightMove;
 	protected String direction;
 	protected int spriteCounter = 0;
@@ -23,7 +23,6 @@ public abstract class Entity {
 		this.attack = params.getAttack();
 		this.hp = params.getHp();
 	}
-	
 
 	public String getName() {
 		return name;

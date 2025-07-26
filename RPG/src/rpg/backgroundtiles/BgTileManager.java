@@ -13,12 +13,12 @@ import javax.imageio.ImageIO;
 import rpg.swing.GamePanel;
 
 public class BgTileManager {
-	GamePanel gamePanel;
-	ConcurrentHashMap<BgTile, BufferedImage> tile;
-	BgTile desertBgTile = new BgTile();
-	BgTile waterBgTile = new BgTile();
-	BgTile nullBgTile = new BgTile();
-	int mapTileNum[][];
+	public GamePanel gamePanel;
+	public ConcurrentHashMap<BgTile, BufferedImage> tile;
+	public BgTile desertBgTile = new BgTile();
+	public BgTile waterBgTile = new BgTile();
+	public BgTile nullBgTile = new BgTile();
+	public int mapTileNum[][];
 
 	public BgTileManager(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
@@ -94,9 +94,17 @@ public class BgTileManager {
 	public BgTile getKeyByTileNum(int tileNum) {
 		switch (tileNum) {
 		case 0:
-			return desertBgTile;
+			if (tile.containsKey(desertBgTile)) {
+				return desertBgTile;
+			} else {
+				return nullBgTile;
+			}
 		case 1:
-			return waterBgTile;
+			if (tile.containsKey(waterBgTile)) {
+				return waterBgTile;
+			} else {
+				return nullBgTile;
+			}
 		default:
 			return nullBgTile;
 		}

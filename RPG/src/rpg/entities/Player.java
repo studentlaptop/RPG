@@ -10,13 +10,10 @@ import rpg.swing.GamePanel;
 import rpg.swing.KeyHandler;
 
 public class Player extends Entity {
-	private GamePanel gamePanel;
-	private KeyHandler playerMovementHandler;
-	int playerX = getXPos();
-	int playerY = getYPos();
-	int playerMovementSpeed = getMovementSpeed();
+	protected GamePanel gamePanel;
+	protected KeyHandler playerMovementHandler;
 
-	public Player(EntityParams params) {
+	public Player(PlayerParams params) {
 		super(params);
 		this.gamePanel = params.getGamePanel();
 		this.playerMovementHandler = params.getPlayerMovementHandler();
@@ -25,9 +22,9 @@ public class Player extends Entity {
 	}
 
 	public void setDefaultValues() {
-		playerX = 100;
-		playerY = 100;
-		playerMovementSpeed = 2;
+		xPos = 100;
+		yPos = 100;
+		movementSpeed = 2;
 		direction = "down";
 	}
 
@@ -35,34 +32,34 @@ public class Player extends Entity {
 		int diagonalX = 0;
 		int diagonalY = 0;
 
-		if (playerMovementHandler.getUpPressed() == true || playerMovementHandler.getDownPressed() == true ||
-				playerMovementHandler.getLeftPressed() == true || playerMovementHandler.getRightPressed() == true) {
+		if (playerMovementHandler.upPressed == true || playerMovementHandler.downPressed == true ||
+				playerMovementHandler.leftPressed == true || playerMovementHandler.rightPressed == true) {
 			
-			if (playerMovementHandler.getUpPressed()) {
+			if (playerMovementHandler.upPressed) {
 				direction = "up";
-				playerY -= playerMovementSpeed;
+				yPos -= movementSpeed;
 				diagonalY -= 1;
 			}
-			if (playerMovementHandler.getDownPressed()) {
+			if (playerMovementHandler.downPressed) {
 				direction = "down";
-				playerY += playerMovementSpeed;
+				yPos += movementSpeed;
 				diagonalY += 1;
 			}
-			if (playerMovementHandler.getLeftPressed()) {
+			if (playerMovementHandler.leftPressed) {
 				direction = "left";
-				playerX -= playerMovementSpeed;
+				xPos -= movementSpeed;
 				diagonalX -= 1;
 			}
-			if (playerMovementHandler.getRightPressed()) {
+			if (playerMovementHandler.rightPressed) {
 				direction = "right";
-				playerX += playerMovementSpeed;
+				xPos += movementSpeed;
 				diagonalX += 1;
 			}
 
 			if (diagonalX != 0 || diagonalY != 0) {
 				double length = Math.sqrt(diagonalX * diagonalX + diagonalY * diagonalY);
-				playerX += (int) (playerMovementSpeed * diagonalX / length);
-				playerY += (int) (playerMovementSpeed * diagonalY / length);
+				xPos += (int) (movementSpeed * diagonalX / length);
+				yPos += (int) (movementSpeed * diagonalY / length);
 			}
 
 			spriteCounter++;
@@ -115,7 +112,7 @@ public class Player extends Entity {
 			}
 			break;
 		}
-		g2.drawImage(playerSprite, playerX, playerY, gamePanel.tileSize, gamePanel.tileSize, null);
+		g2.drawImage(playerSprite, xPos, yPos, gamePanel.tileSize, gamePanel.tileSize, null);
 	}
 
 	public void getPlayerImage() {
@@ -131,5 +128,13 @@ public class Player extends Entity {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public GamePanel getGamePanel() {
+		return gamePanel;
+	}
+	
+	public KeyHandler getPlayerMovementHandler() {
+		return playerMovementHandler;
 	}
 }
