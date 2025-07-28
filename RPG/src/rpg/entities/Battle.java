@@ -54,32 +54,27 @@ public class Battle {
 		if (enemy.getHp() > 0) {
 			return enemy.getName();
 		}
-		return null;
+		return "Victor not found...";
 	} // end of victor()
 
 	public String battleSequence() {
 		// beginBattle();
-		while (player.hp > 0 && enemy.hp > 0) {
+		do {
 			queueCombatants();
 
-			while (!combatantQueue.isEmpty()) {
-				if (player.hp > 0 && enemy.hp > 0) {
-					System.out.println(combatantQueue.peek().name + " attacks!\n");
-					attack();
-					System.out.println(getStats(player, enemy) + "\n");
-					combatantQueue.remove();
-				} else {
-					return victor();
-				}
+			if (!combatantQueue.isEmpty()) {
+				System.out.println(combatantQueue.peek().name + " attacks!\n");
+				attack();
+				System.out.println(getStats(player, enemy) + "\n");
+				combatantQueue.remove();
 			}
-		}
-		return null;
+		} while (player.hp > 0 && enemy.hp > 0);
+		return victor();
 	} // end of battleSequence()
 
 	public String getStats(Player player, Enemy enemy) { // consider returning an array or other kind of list for GUI to
 															// call and retrieve from
-		String stats = (player.name + "'s HP: " + player.hp + "\n" + enemy.name + "'s HP: "
-				+ enemy.hp);
+		String stats = (player.name + "'s HP: " + player.hp + "\n" + enemy.name + "'s HP: " + enemy.hp);
 		return stats;
 	}
 
