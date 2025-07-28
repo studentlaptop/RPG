@@ -33,7 +33,15 @@ public abstract class Entity {
 	}
 
 	public void setSpeed(int speed) {
-		this.speed = speed;
+		if (speed < 1) {
+			this.speed = 1;
+		}
+		else if (speed > 99) {
+			this.speed = 99;
+		}
+		else {
+			this.speed = speed;
+		}
 	}
 
 	public int getAttack() {
@@ -41,7 +49,15 @@ public abstract class Entity {
 	}
 
 	public void setAttack(int attack) {
-		this.attack = attack;
+		if (attack < 1) {
+			this.attack = 1;
+		}
+		else if (attack > 99) {
+			this.attack = 99;
+		}
+		else {
+			this.attack = attack;
+		}
 	}
 
 	public int getHp() {
@@ -49,7 +65,15 @@ public abstract class Entity {
 	}
 
 	public void setHp(int hp) {
-		this.hp = hp;
+		if (hp < 0) {
+			this.hp = 0;
+		}
+		else if (hp > 500) {
+			this.hp = 500;
+		}
+		else {
+			this.hp = hp;
+		}
 	}
 
 	public int getXPos() {
