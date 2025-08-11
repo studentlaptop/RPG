@@ -59,7 +59,7 @@ public class Battle {
 
 	public String battleSequence() {
 		// beginBattle();
-		do {
+		while (player.hp > 0 && enemy.hp > 0) {
 			queueCombatants();
 
 			if (!combatantQueue.isEmpty()) {
@@ -68,7 +68,7 @@ public class Battle {
 				System.out.println(getStats(player, enemy) + "\n");
 				combatantQueue.remove();
 			}
-		} while (player.hp > 0 && enemy.hp > 0);
+		}
 		return victor();
 	} // end of battleSequence()
 
