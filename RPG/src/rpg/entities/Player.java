@@ -114,7 +114,12 @@ public class Player extends Entity {
 		}
 		g2.drawImage(playerSprite, xPos, yPos, gamePanel.tileSize, gamePanel.tileSize, null);
 	}
-
+	
+	/*
+	 * TODO
+	 * change name to setPlayerImage and change to a mutator
+	 * make a separate accessor for player sprites
+	 */
 	public void getPlayerImage() {
 		try {
 			upIdle = ImageIO.read(getClass().getResourceAsStream("/rpg/res/player/blobberUpIdle.png"));
