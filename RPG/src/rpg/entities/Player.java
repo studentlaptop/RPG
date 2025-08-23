@@ -3,6 +3,7 @@ package rpg.entities;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.imageio.ImageIO;
 
@@ -141,5 +142,25 @@ public class Player extends Entity {
 	
 	public KeyHandler getPlayerMovementHandler() {
 		return playerMovementHandler;
+	}
+	
+	private boolean recruitCheck(Enemy enemy) {
+		int recruitDiceRoll;
+		if (enemy.isRecruitable) {
+			recruitDiceRoll = ThreadLocalRandom.current().nextInt(0, 100);
+			if (recruitDiceRoll < enemy.recruitChance) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		return false;
+	}
+	
+	private void recruit(Enemy enemy) {
+		if (recruitCheck(enemy)) {
+			Player recruitedEnemy = new Player(null); // TODO consider making an Ally class that extends Enemy or Player/Entity without KeyHandler and GamePanel parameters
+			// TODO create a playerParty list and add recruitedEnemy to it
+		}
 	}
 }
